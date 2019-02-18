@@ -1,8 +1,19 @@
+default: &default
+      adapter: postgresql
+      encoding: unicode
+      pool: 5
+      username: <%= ENV['USERNAME'] %>
+      password: <%= ENV['PASSWORD'] %>
+      host:     <%= ENV['IP'] %>
+
 development:
-  adapter: postgresql
-  database: prelaunchr_development
-  host: localhost
+  <<: *default
+  database: app_development
+
 test:
-  adapter: postgresql
-  database: prelaunchr_test
-  host: localhost
+  <<: *default
+  database: app_test
+
+production:
+  <<: *default
+  database: app_production
